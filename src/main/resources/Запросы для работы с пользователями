@@ -1,0 +1,4 @@
+Получить всех пользователей: SELECT * FROM users;
+Найти пользователя по имени: SELECT * FROM users WHERE username = 'ivan';
+Количество зарегистрированных пользователей: SELECT COUNT(*) AS user_count FROM users;
+Найти пользователя по частичному совпадению имени: SELECT * FROM users WHERE username LIKE '%ann%';

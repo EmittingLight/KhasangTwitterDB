@@ -1,0 +1,13 @@
+Получить всех подписчиков конкретного пользователя: SELECT u.username AS follower
+                                                    FROM followers f
+                                                    JOIN users u ON f.follower_id = u.id
+                                                    WHERE f.following_id = (SELECT id FROM users WHERE username = 'anna');
+Получить всех, на кого подписан конкретный пользователь: SELECT u.username AS following
+                                                         FROM followers f
+                                                         JOIN users u ON f.following_id = u.id
+                                                         WHERE f.follower_id = (SELECT id FROM users WHERE username = 'ivan');
+Получить количество подписчиков у каждого пользователя: SELECT u.username, COUNT(f.follower_id) AS followers_count
+                                                        FROM users u
+                                                        LEFT JOIN followers f ON u.id = f.following_id
+                                                        GROUP BY u.username;
+

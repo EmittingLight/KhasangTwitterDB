@@ -1,0 +1,14 @@
+Получить твиты всех, на кого подписан пользователь: SELECT t.content, t.created_at, u.username
+                                                    FROM tweets t
+                                                    JOIN users u ON t.user_id = u.id
+                                                    WHERE t.user_id IN (
+                                                        SELECT following_id FROM followers WHERE follower_id = (SELECT id FROM users WHERE username = 'ivan')
+                                                    )
+                                                    ORDER BY t.created_at DESC;
+Получить последние 10 твитов друзей пользователя: SELECT t.content, t.created_at, u.username
+                                                  FROM tweets t
+                                                  JOIN users u ON t.user_id = u.id
+                                                  WHERE t.user_id IN (
+                                                      SELECT following_id FROM followers WHERE follower_id = (SELECT id FROM users WHERE username = 'anna')
+                                                  )
+                                                  ORDER BY t.created_at DESC LIMIT 10;

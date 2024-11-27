@@ -1,0 +1,8 @@
+Получить все твиты: SELECT * FROM tweets;
+Получить твиты конкретного пользователя: SELECT * FROM tweets WHERE user_id = (SELECT id FROM users WHERE username = 'ivan');
+Найти твиты по ключевым словам (например, "программирование"): SELECT * FROM tweets WHERE content LIKE '%программирование%';
+Получить количество твитов для каждого пользователя: SELECT u.username, COUNT(t.id) AS tweet_count
+                                                     FROM tweets t
+                                                     JOIN users u ON t.user_id = u.id
+                                                     GROUP BY u.username;
+Получить самые последние твиты (например, 5 последних):SELECT * FROM tweets ORDER BY created_at DESC LIMIT 5;

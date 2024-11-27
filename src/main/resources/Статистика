@@ -1,0 +1,12 @@
+Самый популярный пользователь (по количеству подписчиков): SELECT u.username, COUNT(f.follower_id) AS followers_count
+                                                           FROM users u
+                                                           JOIN followers f ON u.id = f.following_id
+                                                           GROUP BY u.username
+                                                           ORDER BY followers_count DESC
+                                                           LIMIT 1;
+Самый активный пользователь (по количеству твитов): SELECT u.username, COUNT(t.id) AS tweet_count
+                                                    FROM users u
+                                                    JOIN tweets t ON u.id = t.user_id
+                                                    GROUP BY u.username
+                                                    ORDER BY tweet_count DESC
+                                                    LIMIT 1;
